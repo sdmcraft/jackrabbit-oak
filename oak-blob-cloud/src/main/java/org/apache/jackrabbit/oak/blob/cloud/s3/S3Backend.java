@@ -46,6 +46,7 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.amazonaws.services.s3.model.StorageClass;
 import com.amazonaws.services.s3.transfer.Copy;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.Upload;
@@ -228,7 +229,7 @@ public class S3Backend extends AbstractSharedBackend {
                 try {
                     // start multipart parallel upload using amazon sdk
                     Upload up = tmx.upload(s3ReqDecorator.decorate(new PutObjectRequest(
-                        bucket, key, file)));
+                        bucket, key, file).withStorageClass(StorageClass.StandardInfrequentAccess)));
                     // wait for upload to finish
                     up.waitForUploadResult();
                     LOG.debug("synchronous upload to identifier [{}] completed.", identifier);
