@@ -91,7 +91,7 @@ public final class Utils {
             LOG.info("Configuring Amazon Client from property file.");
             AWSCredentials credentials = new BasicAWSCredentials(accessKey,
                     secretKey);
-            s3service = new AmazonS3Client(credentials,
+            s3service = new ProxyAmazonS3Client(credentials,
                     getClientConfiguration(prop));
         }
         String region = prop.getProperty(S3Constants.S3_REGION);
