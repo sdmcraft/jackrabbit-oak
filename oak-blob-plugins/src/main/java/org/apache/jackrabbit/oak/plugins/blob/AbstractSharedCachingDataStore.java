@@ -195,12 +195,14 @@ public abstract class AbstractSharedCachingDataStore extends AbstractDataStore
         // This avoids downloading the file for just accessing the meta data.
         File cached = cache.getIfPresent(dataIdentifier.toString());
         if (cached != null && cached.exists()) {
+            LOG.debug("Fetched {} from cache at {}", dataIdentifier.toString(), cached.getAbsolutePath());
             return new FileCacheDataRecord(this, backend, dataIdentifier, cached.length(),
                 cached.lastModified());
         } else {
             // Return the metadata from backend and lazily load the stream
             try {
                 DataRecord rec = backend.getRecord(dataIdentifier);
+                LOG.debug("Fetched {} from cache at {}", dataIdentifier.toString(), cached.getAbsolutePath());
                 return new FileCacheDataRecord(this, backend, dataIdentifier, rec.getLength(),
                     rec.getLastModified());
             } catch (Exception e) {
