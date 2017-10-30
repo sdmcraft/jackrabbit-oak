@@ -27,7 +27,7 @@
   <artifactId>oak-blob-plugins</artifactId>
   <name>Oak Blob Plugins</name>
   <packaging>bundle</packaging>
-  <version>1.7.5-R1804665-Instrumented-B001-SNAPSHOT</version>
+  <version>1.7.5-R1804665-Instrumented-B002-SNAPSHOT</version>
 
   <build>
     <plugins>

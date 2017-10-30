@@ -202,7 +202,7 @@ public abstract class AbstractSharedCachingDataStore extends AbstractDataStore
             // Return the metadata from backend and lazily load the stream
             try {
                 DataRecord rec = backend.getRecord(dataIdentifier);
-                LOG.debug("Fetched {} from cache at {}", dataIdentifier.toString(), cached.getAbsolutePath());
+                LOG.debug("Fetched {} from backend at {}", dataIdentifier.toString(), rec.getReference());
                 return new FileCacheDataRecord(this, backend, dataIdentifier, rec.getLength(),
                     rec.getLastModified());
             } catch (Exception e) {
